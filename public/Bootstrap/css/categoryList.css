@@ -1,0 +1,14 @@
+/* Bouton de suppression */
+.btn-danger {
+    background-color: #E63946; /* Rouge */
+    border: none;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #C62828; /* Rouge foncé */
+    color: #fff;
+}

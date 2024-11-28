@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/categoryDetails.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/styles.css') }}">
+{% endblock %}
+{% block body %}
+
+<div class="category-container">
+    <h1>{{ category.name }}</h1>
+    <p>{{ category.description }}</p>
+
+    
+    <a href="{{ path('app_categorys') }}" class="btn-back">Retour à la liste des articles</a>
+</div>
+{% endblock %}

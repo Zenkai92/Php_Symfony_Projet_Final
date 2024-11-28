@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Comptes{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/admin.css') }}">
+    
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Gestion des Comptes</h1>
+
+        {% if users is empty %}
+            <div class="alert alert-warning text-center">
+                Aucun utilisateur trouvé.
+            </div>
+        {% else %}
+            <div class="table-wrapper">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom d'utilisateur</th>
+                            <th>Email</th>
+                            <th>Rôle</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.firstName }}</td>
+                                <td>{{ user.lastName }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.roles | join(', ') }}</td>
+                                <td>
+                                    <a href="{{ path('app_user_delete', { 'id': user.id }) }}" 
+                                       class="btn-delete" 
+                                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                       Supprimer
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

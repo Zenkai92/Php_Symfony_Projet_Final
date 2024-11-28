@@ -1,17 +1,105 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blog{% endblock %}</title>
+    
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
+   <!-- Ici se trouve la base de toute nos page comprenant le header et le footer qui se repete sur chacune des autres pages de notre site -->
+    {% block stylesheets %}
+    
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/styles.css') }}">
+{% endblock %}
+    
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-light rounded px-3 py-2" href="app_main">Accueil</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                            <a class="nav-link bg-primary text-light rounded ms-3" href="posts">Liste des articles</a>
+                    </li>
+                        
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-light rounded ms-3" href="categorys">Liste des categories</a>
+                    </li>
+                    
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link bg-danger text-light rounded ms-3" href="{{ path('app_logout') }}">Deconnexion</a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link bg-warning text-dark rounded ms-3" href="{{ path('app_users') }}">Gestion des comptes</a>
+                        </li>
+                        {% endif %}
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link bg-success text-light rounded ms-3" href="login">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bg-primary text-light ms-3 rounded" href="register">Inscription</a>
+                        </li>
+                    {% endif %}
+                    </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5 flex-grow-1">
         {% block body %}{% endblock %}
-    </body>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 pt-4 pb-4">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>À propos</h5>
+                    <p>Bienvenue sur notre blog. Nous partageons des articles intéressants sur divers sujets.</p>
+                    <h5>Liens utiles</h5><br>
+                    <ul class="list-unstyled">
+                        {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="{{ path('app_logout') }}">Deconnexion</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="login">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register">Inscription</a>
+                        </li>
+                    {% endif %}
+                    </ul>
+                </div>
+                <div class="col-md-3 offset-md-3">
+                    <h5>Suivez-nous</h5>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="https://youtu.be/QFpoimlIM1E" class="text-white text-decoration-none"><i class="bi bi-facebook"></i> Facebook</a>
+                        </li><br>
+                        <li class="list-inline-item">
+                            <a href="https://x.com/Zenkai921?t=EmCjWQIVHjxm84G4NRsuDw&s=33" class="text-white text-decoration-none"><i class="bi bi-twitter"></i> Twitter</a>
+                        </li><br>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/zenkai_92/profilecard/?igsh=MXR1cnIzNWxmbnl3" class="text-white text-decoration-none"><i class="bi bi-instagram"></i> Instagram</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p class="mb-0">© 2024 Blog. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ asset('js/scripts.js') }}"></script>
+</body>
 </html>

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+<!-- Pour ce qui est des commentaires ceux du fichier postFormhtml.twig donc vous devriez comprendre les fonctionnalités rapidement -->
+{% block title %}Modifier l'article : {{ post.title }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/postEdit.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="create-article-container">
+    <h1>Modifier l'article</h1>
+
+    {{ form_start(form, { 'attr': { 'class': 'needs-validation', 'novalidate': 'novalidate' } }) }}
+
+        
+        <div class="mb-3">
+            {{ form_label(form.category, 'Choisir une catégorie :', { 'label_attr': { 'class': 'form-label' } }) }}
+            {{ form_widget(form.category, { 'attr': { 'class': 'form-select' } }) }}
+        </div>
+
+        
+        <div class="mb-3">
+            {{ form_label(form.picture, 'URL de l\'image :', { 'label_attr': { 'class': 'form-label' } }) }}
+            {{ form_widget(form.picture, { 'attr': { 'class': 'form-control', 'placeholder': 'Saisissez l\'URL de l\'image' } }) }}
+        </div>
+
+        
+        <div class="image-preview-container mb-3 text-center">
+            {% if form.picture.vars.value %}
+                <img src="{{ form.picture.vars.value }}" alt="Aperçu de l'image" class="image-preview img-fluid rounded shadow-sm">
+            {% endif %}
+        </div>
+
+       
+        <div class="mb-3">
+            {{ form_row(form.title, { 'attr': { 'class': 'form-control', 'placeholder': 'Titre de l\'article' } }) }}
+        </div>
+        <div class="mb-3">
+            {{ form_row(form.content, { 'attr': { 'class': 'form-control', 'placeholder': 'Contenu de l\'article' } }) }}
+        </div>
+
+     
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+        </div>
+
+    {{ form_end(form) }}
+
+   
+    <div class="text-center mt-3">
+        <a href="{{ path('app_posts') }}" class="btn btn-secondary">Retour à la liste des articles</a>
+    </div>
+</div>
+{% endblock %}

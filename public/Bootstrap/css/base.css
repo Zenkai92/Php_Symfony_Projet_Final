@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'NISESEGASONIC';
+    src: url('../fonts/NISESEGASONIC.ttf') format('truetype');
+}
+
+body {
+    background-color: #F0F8FF; /* Light blue background */
+    color: #1C3D6B; /* Deep blue for text */
+}
+
+a {
+font-family: 'NISESEGASONIC', sans-serif;
+}
+h1 {
+font-family: 'NISESEGASONIC', sans-serif;
+}
+.navbar {
+    background-color: #1C3D6B; /* Sonic Blue */
+}
+
+/* Application de la police personnalisée sur le bouton "Blog" */
+.navbar-brand {
+    font-family: 'NISESEGASONIC', sans-serif;
+    color: #F5A623; /* Sonic Yellow */
+}
+
+.navbar-brand:hover {
+    color: #FFFFFF; /* White text on hover */
+}
+
+.navbar-toggler-icon {
+    background-color: #F5A623; /* Yellow for toggler */
+}
+
+footer {
+    background-color: #1C3D6B; /* Sonic Blue */
+    color: #FFFFFF;
+}
+
+footer a {
+    color: #F5A623; /* Yellow for footer links */
+}
+
+footer a:hover {
+    color: #E63946; /* Red for hover effect */
+}
+
+/* Custom button styles */
+.btn-primary {
+    background-color: #1C3D6B; /* Sonic Blue */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #F5A623; /* Yellow on hover */
+    color: #1C3D6B; /* Text in deep blue */
+}
+
+.btn-secondary {
+    background-color: #E63946; /* Red for secondary buttons */
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #F5A623; /* Yellow on hover */
+    color: #1C3D6B; /* Text in deep blue */
+}
+
+.btn-login {
+    background-color: #1C3D6B; /* Sonic Blue for login */
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: #F5A623; /* Yellow on hover */
+    color: #1C3D6B; /* Text in deep blue */
+}
+
+.btn-register {
+    background-color: #E63946; /* Red Sonic for register */
+    color: white;
+}
+
+.btn-register:hover {
+    background-color: #F5A623; /* Yellow on hover */
+    color: #1C3D6B; /* Text in deep blue */
+}
+
+.btn {
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}

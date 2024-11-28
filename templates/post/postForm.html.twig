@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un nouvel article{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/postForm.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="create-article-container">
+    <h1>Créer un nouvel article</h1>
+
+    {{ form_start(form, { 'attr': { 'class': 'needs-validation', 'novalidate': 'novalidate' } }) }}
+
+        <!-- Champ pour la catégorie -->
+        <div class="mb-3">
+            {{ form_label(form.category, 'Choisir une catégorie :', { 'label_attr': { 'class': 'form-label' } }) }}
+            {{ form_widget(form.category, { 'attr': { 'class': 'form-select' } }) }}
+        </div>
+
+        <!-- Champ pour l'URL de l'image -->
+        <div class="mb-3">
+            {{ form_label(form.picture, 'URL de l\'image :', { 'label_attr': { 'class': 'form-label' } }) }}
+            {{ form_widget(form.picture, { 'attr': { 'class': 'form-control', 'placeholder': 'Saisissez l\'URL de l\'image' } }) }}
+        </div>
+
+        <!-- Prévisualisation de l'image si l'URL est fournie -->
+        <div class="image-preview-container mb-3 text-center">
+            {% if form.picture.vars.value %}
+                <img src="{{ form.picture.vars.value }}" alt="Aperçu de l'image" class="image-preview img-fluid rounded shadow-sm">
+            {% endif %}
+        </div>
+
+        <!-- Champs restants du formulaire -->
+        <div class="mb-3">
+            {{ form_row(form.title, { 'attr': { 'class': 'form-control', 'placeholder': 'Titre de l\'article' } }) }}
+        </div>
+        <div class="mb-3">
+            {{ form_row(form.content, { 'attr': { 'class': 'form-control', 'placeholder': 'Contenu de l\'article' } }) }}
+        </div>
+
+        <!-- Bouton de soumission -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Publier</button>
+        </div>
+    {{ form_end(form) }}
+
+    <!-- Bouton retour -->
+    <div class="text-center mt-3">
+        <a href="{{ path('app_posts') }}" class="btn btn-secondary">Retour à la liste des articles</a>
+    </div>
+</div>
+{% endblock %}
+<!-- Vous retrouverez les memes boutons dans le fichier postEdit.html.twig-->
