@@ -10,27 +10,30 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Category;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('category', EntityType::class, [
-            'class' => Category::class,  
-            'choice_label' => 'name',  
-            'placeholder' => 'Sélectionner une catégorie',  
-            'required' => false, 
-            'label' => 'Catégorie', 
-        ])
+        
             ->add('title', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Titre',])
-            ->add('content', TextType::class, [
-                'required' => false,
+            ->add('content', TextareaType::class, [
+                'required' => true,
                 'label' => 'Contenu',])
+                ->add('category', EntityType::class, [
+                    'class' => Category::class,  
+                    'choice_label' => 'name',  
+                    'placeholder' => 'Sélectionner une catégorie',  
+                    'required' => true, 
+                    'label' => 'Catégorie', 
+                ])
+
             ->add('picture', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'URL de l\'image',
             ])
             

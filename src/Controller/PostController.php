@@ -25,7 +25,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/posts', name: 'app_posts')]//Fontion pour afficher la liste des articles
+    #[Route('/posts', name: 'app_posts')] // Fonction pour afficher la liste des articles
     public function list(PostRepository $postRepository): Response
     {
         $posts = $postRepository->getAllposts();
@@ -35,7 +35,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/{id}', name: 'app_post')]//Fonction pour afficher un article en particulier grâce à son id
+    #[Route('/post/{id}', name: 'app_post')] // Fonction pour afficher un article en particulier grâce à son id
     public function show(
         Request $request,
         EntityManagerInterface $entityManager,
@@ -46,15 +46,12 @@ class PostController extends AbstractController
             throw $this->createNotFoundException('Article introuvable.');
         }
 
-        
         $comments = $commentRepository->findBy(['post' => $post]);
 
-        
         $comment = new Comment();
         $commentForm = $this->createForm(CommentType::class, $comment);
         $commentForm->handleRequest($request);
 
-        
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $comment->setPost($post);
             $comment->setUser($this->getUser());
@@ -74,7 +71,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post_add', name: 'app_post_add')]//Fonction pour ajouter un article
+    #[Route('/post_add', name: 'app_post_add')] // Fonction pour ajouter un article
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $post = new Post();
@@ -101,17 +98,24 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/delete/{id}', name: 'app_post_delete')]//Fonction pour supprimer un article
-    public function delete(Post $post, EntityManagerInterface $entityManager): Response
+    #[Route('/post/delete/{id}', name: 'app_post_delete')] // Fonction pour supprimer un article
+    public function delete(Post $post, EntityManagerInterface $entityManager, CommentRepository $commentRepository): Response
     {
+        // Supprimer tous les commentaires associés à ce post
+        $comments = $commentRepository->findBy(['post' => $post]);
+        foreach ($comments as $comment) {
+            $entityManager->remove($comment);
+        }
+
+        // Supprimer le post
         $entityManager->remove($post);
         $entityManager->flush();
 
-        $this->addFlash('success', 'L\'article a été supprimé avec succès.');
+        $this->addFlash('success', 'L\'article et ses commentaires ont été supprimés avec succès.');
         return $this->redirectToRoute('app_posts');
     }
 
-    #[Route('/post/edit/{id}', name: 'app_post_edit')]//Fontion pour modifier un article
+    #[Route('/post/edit/{id}', name: 'app_post_edit')] // Fonction pour modifier un article
     public function edit(
         $id,
         Request $request,

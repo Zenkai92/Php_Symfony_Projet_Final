@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
@@ -19,15 +20,23 @@ class Post
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
+    #[Assert\NotBlank(message: "Le titre est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "Le titre ne peut pas dépasser {{ limit }} caractères."
+    )]
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
+    #[Assert\NotBlank(message: "Le contenu est obligatoire.")]
+    
 
     #[ORM\Column]
     private ?\DateTimeImmutable $publishedAt = null;
 
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
+    #[Assert\NotBlank(message: "La photo est obligatoire.")]
 
     
 

@@ -1,19 +1,43 @@
+/* Navbar */
+.navbar {
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: #fff;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Table Styling */
 table {
     width: 100%;
     margin: 20px 0;
     border-collapse: collapse;
 }
+
 table th, table td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+
 table th {
     background-color: #f8f9fa;
 }
+
 table tr:hover {
     background-color: #f1f1f1;
 }
+
+/* Delete Button Styling */
 .btn-delete {
     color: #ffffff;
     background-color: #dc3545;
@@ -22,29 +46,68 @@ table tr:hover {
     text-decoration: none;
     border-radius: 4px;
 }
+
 .btn-delete:hover {
     background-color: #c82333;
 }
+
+/* Container */
 .container {
     max-width: 1000px;
     margin: 0 auto;
 }
+
+/* Alert Styling */
 .alert {
     margin-top: 20px;
 }
+
+/* Card Styling */
 .card {
     margin-top: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 8px;
     background-color: #fff;
 }
+
+/* Heading */
 h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #343a40;
 }
+
+/* Table Wrapper */
 .table-wrapper {
     margin-top: 20px;
     overflow-x: auto;
+}
+
+/* Optional: Navbar Styling (if it's part of your layout) */
+.navbar {
+    background-color: #007bff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .navbar-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar .navbar-nav a {
+    color: white;
+    font-size: 1rem;
+}
+
+.navbar .navbar-nav a:hover {
+    color: #f8f9fa;
 }

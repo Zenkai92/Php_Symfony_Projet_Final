@@ -16,6 +16,16 @@
 
         
         <div class="mb-3">
+            {{ form_row(form.title, { 'attr': { 'class': 'form-control', 'placeholder': 'Titre de l\'article' } }) }}
+        </div>
+        <div class="mb-3">
+            {{ form_row(form.content, { 'attr': { 'class': 'form-control', 'placeholder': 'Contenu de l\'article' } }) }}
+        </div>
+
+
+
+
+        <div class="mb-3">
             {{ form_label(form.category, 'Choisir une catégorie :', { 'label_attr': { 'class': 'form-label' } }) }}
             {{ form_widget(form.category, { 'attr': { 'class': 'form-select' } }) }}
         </div>
@@ -34,12 +44,7 @@
         </div>
 
        
-        <div class="mb-3">
-            {{ form_row(form.title, { 'attr': { 'class': 'form-control', 'placeholder': 'Titre de l\'article' } }) }}
-        </div>
-        <div class="mb-3">
-            {{ form_row(form.content, { 'attr': { 'class': 'form-control', 'placeholder': 'Contenu de l\'article' } }) }}
-        </div>
+        
 
      
         <div class="text-center">

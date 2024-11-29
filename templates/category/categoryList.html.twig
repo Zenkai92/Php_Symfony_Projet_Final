@@ -40,14 +40,14 @@
                 </div>
             {% else %}
                 <div class="alert alert-warning text-center mt-4">
-                    Aucune catégorie trouvée.
+                    Aucune categorie trouvee.
                 </div>
             {% endif %}
 
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="text-end mt-4">
                     <a href="{{ path('app_category_add') }}" class="btn btn-success rounded fw-normal fs-5">
-                        <i class="bi bi-plus-lg"></i> Créer une nouvelle catégorie
+                        <i class="bi bi-plus-lg"></i> Créer une nouvelle categorie
                     </a>
                 </div>
             {% endif %}

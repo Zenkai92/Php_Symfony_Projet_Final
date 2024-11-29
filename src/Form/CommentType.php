@@ -17,10 +17,11 @@ class CommentType extends AbstractType
         ->add('content', TextareaType::class, [
             'label' => 'Votre commentaire',
             'attr' => ['placeholder' => 'Laissez un commentaire...'],
+            'required' => true
         ])
         ->add('parentComment', HiddenType::class, [
             'mapped' => false,
-            'required' => false,
+            'required' => false
         ]);
     }
 
